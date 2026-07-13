@@ -1,0 +1,452 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX \usepackage[T1]{fontenc} \usepackage[utf8]{inputenc} \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex \usepackage{unicode-math} % this also loads fontspec \defaultfontfeatures{Scale=MatchLowercase} \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available \usepackage[]{microtype} \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class \IfFileExists{parskip.sty}{% \usepackage{parskip} }{% else \setlength{\parindent}{0pt} \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width \sbox\pandoc@box{#1}% \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}% \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}% \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}% \else\usebox{\pandoc@box}% \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{% \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{ hidelinks, pdfcreator={LaTeX via pandoc}} \author{}
+\date{} \begin{document} % KAPAK SAYFASI
+\begin{titlepage}
+\centering \vspace*{0.5cm} \includegraphics[width=3in]{media/media/image5.png} \vspace{0.5cm} {\LARGE\bfseries CNG 465\par} \vspace{0.5cm} {\Large INTRODUCTION TO BIOINFORMATICS\par} \vspace{1cm} {\large Fall 25-26\par} \vspace{0.3cm} {\large Semester Project Report\par} \vspace{0.3cm} {\large \par} \vfill {\large \par
+\vspace{0.2cm} \par
+\vspace{0.2cm} \par
+\vspace{0.2cm}
+Zanyar Erkozan 2584985\par
+} \vspace{1cm} \end{titlepage} \newpage % ABSTRACT
+\section{ABSTRACT}\label{abstract} The primary goal of the project was to design and develop a family tree
+and to design algorithms implementing family relationships based on this
+design. It is a model of individuals, relationships of the parent and
+child, and relationships of marriage. The project was written in Python programming language using object
+orientation. The basic classes were deployed to handle persons,
+gender-specific persons, partnerships and traversal nodes. Then
+different functions were built on the developed structure based on the
+relationships within the families. This includes parents, kids,
+ancestors, descendants and other relationships through various graph
+methods by traversals. The developed system makes the traversal of the family relationship in a
+systematic method with the help of breadth-first search algorithm. To
+ensure the correct values of the developed system has been confirmed
+through various simulations performed on different family structures.
+The simulation results indicate that the developed system is capable of
+displaying the family relationships in a proper manner and performing
+genealogical queries effectively. \newpage % TABLE OF CONTENTS
+\section{Table of Contents}\label{table-of-contents} \hyperref[abstract]{\textbf{1. ABSTRACT 2}} \hyperref[table-of-contents]{\textbf{Table of Contents 3}} \hyperref[table-of-figures]{\textbf{Table of Figures 4}} \hyperref[introduction]{\textbf{2. INTRODUCTION 5}} \hyperref[contribution]{\textbf{3.} \textbf{CONTRIBUTION} \textbf{5}} \hyperref[problem-statement]{\textbf{4. PROBLEM STATEMENT 6}} \hyperref[solution]{\textbf{5.} \textbf{SOLUTION} \textbf{7}} \begin{quote}
+\hyperref[partnership-class]{1) Partnership Class 7} \hyperref[str__-function]{A) \_\_str\_\_ Function 8} \hyperref[repr__-function]{B) \_\_repr\_\_ Function 9} \hyperref[is_parent-function]{C) is\_parent Function 10} \hyperref[is_mother-function]{D) is\_mother Function 11} \hyperref[is_father-function]{E) is\_father Function 12} \hyperref[add_parent-function]{F) add\_parent Function 13} \hyperref[add_child-function]{G) add\_child Function 14} \hyperref[add_children-function]{H) add\_children Function 15} \hyperref[traverse-function]{I) traverse Function 15} \hyperref[person-class]{2) Person Class 21} \hyperref[str__-function-1]{A) \_\_str\_\_ Function 22} \hyperref[eq__-function]{B) \_\_eq\_\_ Function 23} \hyperref[ancestor-function]{C) ancestor Function 24} \hyperref[descendant-function]{D) descendant Function 26}
+\end{quote} \hyperref[results]{\textbf{6. RESULTS 28}} \hyperref[data-flow-diagram]{\textbf{7.DATA FLOW DIAGRAM 29}} \hyperref[conclusion]{\textbf{8.} \textbf{CONCLUSION} \textbf{30}} \hyperref[references]{\textbf{9. REFERENCES 30}} \newpage % TABLE OF FIGURES
+\section{Table of Figures}\label{table-of-figures} \begin{quote}
+\hyperref[figure-1-__str__-function-at-partnership-class]{Figure 1
+\_\_str\_\_ Function at Partnership class 8} \hyperref[figure-2-__repr__-function-at-partnership-class]{Figure 2
+\_\_repr\_\_ Function at Partnership class 9} \hyperref[figure-3-is_parent-function-at-partnership-class]{Figure 3
+is\_parent Function at Partnership class 10} \hyperref[figure-4-is_mother-function-at-partnerships-class]{Figure 4
+is\_mother Function at Partnerships class 11} \hyperref[figure-5-is_father-function-at-partnership-class]{Figure 5
+is\_father Function at Partnership class 12} \hyperref[figure-6-add_parent-function-at-partnership-class]{Figure 6
+add\_parent Function at Partnership class 13} \hyperref[figure-7-add_child-function-at-partnership-class]{Figure 7
+add\_child Function at Partnership class 14} \hyperref[figure-8-add_children-function-at-partnership-class]{Figure 8
+add\_children Function at Partnership class 15} \hyperref[figure-9-traverse-function-at-partnership-class]{Figure 9
+traverse Function at Partnership class 18} \hyperref[figure-10-__str__-function-at-person-class]{Figure 10
+\_\_str\_\_ Function at Person class 22} \hyperref[figure-11-__eq__-function-at-person-class]{Figure 11
+\_\_eq\_\_ Function at Person class 23} \hyperref[figure-12-ancestor-function-at-person-class]{Figure 12
+ancestor Function at Person class 24} \hyperref[figure-13-descendants-function-at-person-class]{Figure 13
+descendants Function at Person class 26} \hyperref[figure-14-test-results]{Figure 14 Test Results 28} \hyperref[figure-15-data-flow-diagram]{Figure 15 Data Flow Diagram 29}
+\end{quote} \newpage % INTRODUCTION
+\section{INTRODUCTION}\label{introduction} The objective of this Project was to develop a family tree system with
+the capability of organizing family relations in an organized way. The
+use of family trees are common in applications concerning bioinformatics
+as there is a need to display the relationships of the various people
+efficiently. In the Project a family relationship network, a graph structure was
+created using object oriented programming with Python. Members of a
+family and their relationship\\
+information including gender relationships and parent and child
+relationships were\\
+clearly represented using objects. Functions were also created using a
+graph structure including parents, children and other relationships of a
+person depending on the graph traversal methods. Not only was the aim of the project to store family data but also to
+analyze the relations systematically which means traversal algorithms.
+By doing so the system is able to analyze both the design process
+implementations and testing the code of the developed system. \newpage % CONTRIBUTION
+\section{CONTRIBUTION}\label{contribution} In this Project, () and ()
+was involved mainly in coding implementation and testing. Drawing the Project's logic algorithm flowchart Zanyar Erkozan(2584985)
+was involved. In the Report Writing, translating functions to LaTeX format, describing
+the system design and functionality and documenting the system, () and () was involved. \newpage % PROBLEM STATEMENT
+\section{PROBLEM STATEMENT}\label{problem-statement} The primary problem that is handled in the project is the fact that
+there is no efficient software to handle relationships between families
+and to traverse through the relationships represented in the software.
+This is because the easiest way to represent these relationships between
+the families will only involve the parents or the children, but it is
+not effective when relationships are to be queried both up and downward. Another problem is related to ensuring consistency while traversing the
+family structure. When traversing the tree, it is necessary that the
+persons being traversed are not traversed more than once. To add to
+this, it is required for it to process the relationships in the correct
+way in the same framework for the relationships like ancestors,
+descendants, siblings and cousins. Thus, the problem statement can be conceptualized as encapsulating the
+design of a family tree system such that: correctly reflects persons,
+sexes, partnerships and relationships of parents and children, provides
+support for systematic traversal of the family structure, simplifies
+looking into multiple family relationships in one common manner and is
+also scalable for additional analysis tasks. This project proposes the resolution of these problems by modeling the
+family relations using a representation involving graphs and by building
+functions using traversals to examine said relationships. \newpage % SOLUTION
+\section{SOLUTION}\label{solution} To solve the problem that was defined a graph model of the family
+structure was developed using object oriented programming techniques and
+Python programming.\\
+The rationale was that people and their relationships could be created
+explicitly and these relationships could then be evaluated using formal
+graph traversal techniques. In this solution persons, partnerships, parent and child relationships
+were modeled using distinct classes. Thus this was beneficial in making
+sure that the system is able to differentiate between persons and their
+relationships. According to this methods were developed that allow
+traversal through the family tree. Every key function in the system traces an algorithm sequence clearly.
+Thus in this respect the algorithms used in the function implementation
+will be represented in the formal algorithm description style by
+applying the use of the LaTeX format as used in the standard algorithm
+definition in formal literature. In the following subsections, the primary algorithms employed in the
+system are explained. In each instance, the LaTeX expression
+representing the algorithm is provided first, and then an explanation is
+given of its application and functions. This is done to help the reader
+comprehend both the high-level view and the working of the developed
+solution. \subsection{Partnership Class}\label{partnership-class} A partnership is a representation of the parent pair and their offspring
+in the family tree. It can also be perceived as a marriage/partnership
+node which joins the pair of parents to their offspring in one unit. This gives room to model family relationships in a straightforward
+manner .Within this class, the parents attribute holds the mother and
+father of a relationship, and the children attribute holds a list of all
+the children within a relationship. Along with these relationships, this
+class is linked to the person class by back-references. The child holds
+a reference to a relationship (child\_backref), and a parent holds a
+reference to all relationships within which it is a parent
+(partnership\_backrefs). This creates a relationship tree that can be
+traversed forward and backward efficiently. Further into the phase of the project, various methods in the
+partnership class were enabled through the instructor in the context of
+the project framework. These methods are \_\_str\_\_, \_\_repr\_\_,
+is\_parent, is\_mother, is\_father, add\_parent, add\_child,
+add\_children, and the `traverse` function. These methods were each
+incorporated to perform distinct duties in the context of family
+relationships, to be clarified in the coming sections. \subsubsection{\_\_str\_\_ Function}\label{str__-function} \_\_str\_\_ function defines how a partnership object is represented as
+a string. When the object is printed or converted to a string, it
+returns the partnership's name if it exists. If there is no name
+whatsoever it returns the default value "Partnership". \includegraphics[width=6.26772in,height=1.86111in,alt={Figure 1 Partnership class \_\_str\_\_ function }]{media/media/image12.png} \paragraph{\texorpdfstring{ Figure 1 \_\_str\_\_ Function at Partnership
+class}{ Figure 1 \_\_str\_\_ Function at Partnership class}}\label{figure-1-__str__-function-at-partnership-class} Line 1: Defines the \_\_str\_\_ method for a partnership object. This
+method decides what string will be shown when the object is printed. Line 2: Checks whether the partnership has a valid name. If name does
+exists and is not empty, it will be used. Line 3: Returns the partnership name as the string representation. Line 4: The alternative case when the partnership has no name. Line 5: Returns the default string "Partnership" so the object still has
+a readable output. \subsubsection{\_\_repr\_\_ Function}\label{repr__-function} The \_\_repr\_\_ function is acting like the \_\_str\_\_ function in
+this project, which means it defines how a partnership object is
+represented whenever it would appear in the console or when embedded
+into another data structure, such as a list. If the partnership has a
+name, return the name; else use some default string. \includegraphics[width=6.26772in,height=1.98611in]{media/media/image16.png} \paragraph{\texorpdfstring{ \emph{Figure 2 \_\_repr\_\_ Function at
+Partnership
+class}}{ Figure 2 \_\_repr\_\_ Function at Partnership class}}\label{figure-2-__repr__-function-at-partnership-class} Line 1: Definition of the \_\_repr\_\_ method for a partnership object,
+which controls its representation. Line 2: Checks whether the partnership has a valid name. Line 3: Returns the name of the partnership if it exists. Line 4: The alternative case when the partnership has no name. Line 5: Returns the default string "Partnership" to ensure a readable
+output. \subsubsection{is\_parent Function}\label{is_parent-function} The is\_parrent function checks if the individual is parent or not. The
+function returns the value True if the individual is mother or father.
+If the individual is not a parent the code automatically returns the
+value False for code stability in the future usage. \includegraphics[width=6.26772in,height=2.38889in]{media/media/image18.png} \paragraph{\texorpdfstring{ \emph{Figure 3 is\_parent Function at
+Partnership
+class}}{ Figure 3 is\_parent Function at Partnership class}}\label{figure-3-is_parent-function-at-partnership-class} Line 1: Definition of the is\_parrent method for a partnership object,
+which checks the individual is parent or not. Line 2: Checks whether the partnership's mother is the individual's
+mother . Line 3: Returns true if it is correct. Line 4: Checks whether the partnership's father is the individual's
+father. Line 5: Returns true if it is correct. Line 6: Returns the default answer as False to ensure stability. \subsubsection{is\_mother Function}\label{is_mother-function} The is\_mother function checks if the individual is a mother or not. The
+function returns the value True if the individual is a mother. If the
+individual is not a mother the code automatically returns the value
+False for code stability in the future usage. \includegraphics[width=6.26772in,height=1.75in]{media/media/image15.png} \paragraph{\texorpdfstring{ Figure 4 is\_mother Function at Partnerships
+class}{ Figure 4 is\_mother Function at Partnerships class}}\label{figure-4-is_mother-function-at-partnerships-class} Line 1: Definition of the is\_mother method for a partnership object,
+which checks the individual is mother or not. Line 2: Checks whether the partnership's mother is the individual's
+mother . Line 3: Returns true if the individual is the mother. Line 4: Returns false if the individual is not a mother. \subsubsection{is\_father Function}\label{is_father-function} The is\_father function checks if the individual is father or not. The
+function returns the value True if the individual is father. If the
+individual is not a father, the code automatically returns the value
+False for code stability in the future usage. \includegraphics[width=6.26772in,height=1.70833in]{media/media/image11.png} \paragraph{\texorpdfstring{ \emph{Figure 5 is\_father Function at
+Partnership
+class}}{ Figure 5 is\_father Function at Partnership class}}\label{figure-5-is_father-function-at-partnership-class} Line 1: Definition of the is\_father method for a partnership and
+individual object, which checks the individual is father or not. Line 2: Checks whether the partnership's mother is the individual's
+father. Line 3: Returns true if the individual is the father. Line 4: Returns true if the individual is not the father. \subsubsection{add\_parent Function}\label{add_parent-function} The add\_parrent function adds the partnership to the parent list. The
+function checks the all of the parents and calls the add\_parent
+function with the partnership and parent parameters. \includegraphics[width=6.26772in,height=2.55556in]{media/media/image9.png} \paragraph{\texorpdfstring{ \emph{Figure 6 add\_parent Function at
+Partnership
+class}}{ Figure 6 add\_parent Function at Partnership class}}\label{figure-6-add_parent-function-at-partnership-class} Line 1: Definition of the is\_parrent method for a partnership object,
+which checks the individual is parent or not. Line 2: Checks whether the partnership's mother is the individual's
+mother . Line 3: Returns true if it is correct. Line 4: Checks whether the partnership's father is the individual's
+father. Line 5: Returns true if it is correct. Line 6: Returns the default answer as False to ensure stability. \subsubsection{add\_child Function}\label{add_child-function} The add\_child function's main task is to add a child to the
+partnership. This is done by checking if the child does not exist in the
+partnerships child. Then adds the child to the partnership. Then sets
+the child's back reference to the partnership which is very important
+because in the code we can go through child to partnership as well as
+with the back reference we can go through partnership to child. \includegraphics[width=6.26772in,height=1.75in]{media/media/image17.png} \paragraph{\texorpdfstring{ Figure 7 add\_child Function at Partnership
+class}{ Figure 7 add\_child Function at Partnership class}}\label{figure-7-add_child-function-at-partnership-class} Line 1: Defines the add\_child method with partnership and child as an
+input object. Line 2: Checks whether the child is the partnership child or not. Line 3: If the child is not a child of the partnership, the code adds
+the child to the partnership. Line 4: If the child is not a child of the partnership, we set the
+child's back reference to the partnership. \subsubsection{add\_children Function}\label{add_children-function} The add\_childeren function's main task is to add multiple children to
+the partnership. This is done by adding each child in the children list
+by calling the add\_child function. \includegraphics[width=6.26772in,height=1.41667in]{media/media/image14.png} \paragraph{\texorpdfstring{ \emph{Figure 8 add\_children Function at
+Partnership
+class}}{ Figure 8 add\_children Function at Partnership class}}\label{figure-8-add_children-function-at-partnership-class} Line 1: Defines the add\_children method with partnership and child as
+an input object. Line 2:For loop gets one child in the children one at a time. Line 3: Calls the add\_child function with the input parameters as
+partnership and child. \subsubsection{traverse Function}\label{traverse-function} The traverse function is using breadth-first search traversal in the
+family tree from a given person. The search passes through parents,
+children, siblings, and relationships such as cousins. Each visited
+person is recorded along with a level indicating their position relative
+to each individual in the tree. The search also keeps record of the
+individual with the lowest level encountered. \includegraphics[width=6.26772in,height=7.97222in]{media/media/image8.png} \includegraphics[width=6.26772in,height=7.88889in]{media/media/image1.png}\includegraphics[width=6.62188in,height=1.41022in]{media/media/image6.png} \paragraph{}\label{section} \paragraph{\texorpdfstring{ \emph{Figure 9 traverse Function at
+Partnership
+class}}{ Figure 9 traverse Function at Partnership class}}\label{figure-9-traverse-function-at-partnership-class} Line 1: Defines the traverse method with start\_person and start\_level
+as an input. Line 2: Makes visited\_nodes to be an empty list. Line 3: Makes visited\_persons as an empty set. Line 4: Makes a queue with the start\_person and start\_level. Line 5: Adds start\_person to the visited\_persons. Line 6: Sets min\_level to +infinity. Line 7: Sets min\_level\_node to NULL. Line 8: While loop that checks if the queue is not empty. Line 9: Removes the first element from the queue. Line 10: Creates a visit\_node class vn with current\_person and level. Line 11: Adds vn to the visited\_nodes. Line 12: Checks that if the level is less than min\_level. Line 13: If level is less than min\_level, sets level to min\_level. Line 14: If level is less than min\_level, sets vn to the
+min\_level\_node. Line 15: Checks if visit\_callback exists. Line 16: If visit\_callback exists, calls visit\_callback function with
+current\_person and level. Line 17: Checks current person has any child\_backref. Line 18: If current person has child\_backref, sets current\_person's
+child\_backref to partnership. Line 19: If current person has child\_backref, checks if mother exists
+and not visited. Line 20: If current person has child\_backref and if the mother exists
+and not visited, adds mother to visited person. Line 21: If current person has child\_backref and if the mother exists
+and not visited, adds mother to the queue with the level of level-1. Line 22: If current person has child\_backref, checks if the father
+exists and not visited. Line 23:If current person has child\_backref and checks if the father
+exists and not visited, adds father to the visited\_persons. Line 24:If current person has child\_backref and checks if the father
+exists and not visited, adds father to the queue with the level of
+level-1. Line 25: Creates a loop for each partnership in current\_person's
+partnership\_backrefs. Line 26: Creates a loop for each child in partnership.children while
+maintaining the loop for each partnership in current\_person's
+partnership\_backrefs. Line 27: Checks if a child is not visited as well as within a loop for
+each child in partnership.children while maintaining the loop for each
+partnership in current\_person's partnership\_backrefs. Line 28: If a child is not visited as well as within a loop for each
+child in partnership.children while maintaining the loop for each
+partnership in current\_person's partnership\_backrefs, adds child to
+the visited\_persons Line 29: If a child is not visited as well as within a loop for each
+child in partnership.children while maintaining the loop for each
+partnership in current\_person's partnership\_backrefs, adds child to
+the queue with the level of level -1. Line 30: Checks if a current\_person has a child\_backref Line 31: If a current\_person has a child\_backref, sets
+current\_person's child\_backref to partnership. Line 32: If a current\_person has a child\_backref while maintaining the
+loop for each partnership in current\_person's partnership\_backrefs,
+makes a loop for each sibling in partnership's children. Line 33: If a current\_person has a child\_backref with a loop for each
+sibling in partnership's children, checks if the sibling is not equal to
+the current\_person and not visited. Line 34: If a current\_person has a child\_backref with a loop for each
+sibling in partnership's children as well as with the sibling is not
+equal to the current\_person and not visited, adds sibling to
+visited\_person. Line 35: If a current\_person has a child\_backref with a loop for each
+sibling in partnership's children as well as with the sibling is not
+equal to the current\_person and not visited, adds sibling to the queue
+with the level of level. Line 36: Checks if a current\_person has a child\_backref. Line 37: If a current\_person has a child\_backref, set
+current\_person's child\_backref to partnership. Line 38: If a current\_person has a child\_backref, makes a loop for
+each parent in mother and father. Line 39: If a current\_person has a child\_backref with a loop for each
+parent in mother and father, checks if parent exists and has a
+child\_backref. Line 40: If a current\_person has a child\_backref with a loop for each
+parent in mother and father and parent exists and has a child\_backref,
+sets parent's child\_backref to parent\_partnership. Line 41: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref, creates a loop for each parent\_sibling in
+parent\_partnership's children. Line 42: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children, checks if parent\_sibling is not equal
+to parent and not visited. Line 43: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children and if parent\_sibling is not equal to
+parent and not visited, adds parent\_sibling to visited\_persons. Line 44: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children and if parent\_sibling is not equal to
+parent and not visited, adds parent\_sibling to a queue with the level
+of level -1. Line 45: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children, makes a loop for each partnership in
+parent\_sibling. Line 46: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children, makes a loop for each partnership in
+parent\_sibling. Line 47: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children and fulfills the loop for each
+partnership in parent\_sibling, checks if cousin is not visited. Line 48: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children and fulfills the loop for each
+partnership in parent\_sibling and if cousin is not visited, adds cousin
+to visited\_persons. Line 49: If a current\_person has a child\_backref with a loop for each
+parent in mother and father as well as if parent exists and has a
+child\_backref while satisfying a loop for each parent\_sibling in
+parent\_partnership's children and fulfills the loop for each
+partnership in parent\_sibling and if cousin is not visited, adds cousin
+to a queue with the level of level. Line 50: Checks if level sorting is enabled. Line 51: If level sorting is enabled, sorts visited\_nodes by level. Line 52: Returns visited\_nodes and min\_level\_node. \subsection{2) Person Class}\label{person-class} The Person class represents an individual in the family tree. Each
+person can be assigned a name and an optional DNA code,and can solve
+extra information using a flexible properties dictionary. The class is
+designed to support family relationship queries by linking individuals
+to partnerships through back-referances.\\
+\strut \\
+A person might be connected to the family tree in to different roles.
+Firstly a person can be a child of a certain partnership using
+child\_bacref which points to the partnership where the person appears
+as child. Secondly one can be parent in one or more partnerships which
+is realized by partnership\_backrefs storing a list of partnerships
+where this person is registered as parent. These links make it possible
+to move upwards to parents and downwards to children when navigating a
+family tree. In the project framework, the Person class includes a number utility and
+relationship related methods. While some have been implemented by our
+team with the required functionality, others were provided as part of
+the base structure of this project. In what follows we focus on these
+methods provided by our group. The methods implemented by our team and
+explained in this reports are: \_\_str\_\_, \_\_eq\_\_, ancestor and
+descendant. \subsubsection{\_\_str\_\_ Function}\label{str__-function-1} The `\_\_str\_\_' function returns a string representation of a person
+id a person has a name thats what returned otherwise "Unknown" is set as
+a default output. \includegraphics[width=6.26772in,height=2.08333in]{media/media/image7.png} \paragraph{\texorpdfstring{ Figure 10 \_\_str\_\_ Function at Person
+class}{ Figure 10 \_\_str\_\_ Function at Person class}}\label{figure-10-__str__-function-at-person-class} Line 1: Defines the method \_\_str\_\_ which decides how the person
+object will be represented as a string or printed out. Line 2: It checks if the individual has a valid name. Line 3: This returns the person\textquotesingle s name if it is
+available. Line 4: Starts the alternative case if the name does not exits. Line 5:This is a return statement with the default value "UNknown" to
+make sure the object is always printable. \subsubsection{\_\_eq\_\_ Function}\label{eq__-function} The ``\_\_eq\_\_'' method is used to compare the equality of the objects
+of the persons class. Two persons are said to be equal if both are of
+the same class and have the same name. The method will return False if
+the object passed is not a person object. \includegraphics[width=6.26772in,height=2.80556in]{media/media/image10.png} \paragraph{\texorpdfstring{ Figure 11 \_\_eq\_\_ Function at Person
+class}{ Figure 11 \_\_eq\_\_ Function at Person class}}\label{figure-11-__eq__-function-at-person-class} Line 1: Defines the ``\_\_eq\_\_'' method for comparing the current
+person with another object. Line 2:Checks whether the other object is an instanceof the person
+class. Line 3:If the other object is an instanceof the person class, this line
+will return false if the passed object is not a person. Line 4: Checks if the names of both person objects are equal. Line 5: If the names of both person objects are equal, returns true. Line 6:Checks if the names of both person objects are not equal. Line 7:If the names of both person objects are not equal,It will return
+false if the names don't match. \subsubsection{ancestor Function}\label{ancestor-function} The ancestor function returns a list that includes all ancestors of a
+dedicated person traversing upward through the family tree. The parent
+links are traversed based on child\_backref pointer as well as mother
+and father at different levels. The visited set used to avert returning
+a person or processing it to avoid loops. \includegraphics[width=6.26772in,height=6.25in]{media/media/image4.png} \paragraph{Figure 12 ancestor Function at Person
+class}\label{figure-12-ancestor-function-at-person-class} Line 1: Begins the ancestor method for a person Line 2: Initializes ancestors\_list as an empty list. Line 3:Initializes visited as an empty set. Line 4:Defines recursive function as collect function with an input of
+current\_person. Line 5:Defines recursive function as collect function with an input of
+current\_person and checks if current\_person is in visited. Line 6:Defines recursive function as collect function with an input of
+current\_person and adds current\_person to visited. Line 7:Defines recursive function as collect function with an input of
+current\_person and if current\_person is in visited, returns current
+person. Line 8:Defines recursive function as collect function with an input of
+current\_person and checks if current\_person's child\_backref is not
+null value. Line 9:Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value, sets current person's child\_backref to partnership. Line 10:Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value, checks if partnership's parent's mother is not null and mother is
+not visited. Line 11: Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value and iif partnership's parent's mother is not null, checks mother
+is not visited. Line 12:Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value and if partnership's parent's mother is not null and mother is not
+visited, adds mother to anchestors\_list. Line 13:Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value and if partnership's parent's mother is not null and mother is not
+visited, calls collect function with the input of mother. Line 14: Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value, checks if partnership's parents's father is not null and father
+is not in visited. Line 15: Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value and if partnership's parents's father is not null, checks father
+is not in visited. Line 16:Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value and if partnership's parents's father is not null and father is
+not in visited, adds father to ancestors\_list. Line 17:Defines recursive function as collect function with an input of
+current\_person and if current\_person's child\_backref is not null
+value and if partnership's parents's father is not null and father is
+not in visited, calls collect function with the input of father. Line 18:Calls collect function with the input of person. Line 19:Returns the ancestors\_list. \subsubsection{descendant Function}\label{descendant-function} The descendent method on the other hand traverses down a family tree to
+return all descendants of a person. The method iterates over all pairing
+that involve a person as a parent and append all their child to a set of
+descendants. The method employs a visited set to ensure that a person is
+not traversed more than once. The method is recursive meaning that it
+calls it self to move down generations. \begin{quote}
+\includegraphics[width=6.26772in,height=5in]{media/media/image2.png}
+\end{quote} \paragraph{\texorpdfstring{ \emph{Figure 13 descendants Function at
+Person
+class}}{ Figure 13 descendants Function at Person class}}\label{figure-13-descendants-function-at-person-class} Line 1: Begins the descendants method for a person Line 2: Initializes descentants\_list as an empty list. Line 3:Initializes visited as an empty set. Line 4:Defines recursive function as collect function with an input of
+current\_person. Line 5:Defines recursive function as collect function with an input of
+current\_person and checks if current\_person is in visited. Line 6:Defines recursive function as collect function with an input of
+current\_person and adds current\_person to visited. Line 7:Defines recursive function as collect function with an input of
+current\_person and if current\_person is in visited, returns current
+person. Line 8:Defines recursive function as collect function with an input of
+current\_person and makes a loop for each partnership in
+current\_person's partnership\_backrefs. Line 9:Defines recursive function as collect function with an input of
+current\_person while satisfying a loop for each partnership in
+current\_person's partnership\_backrefs, creates a loop for each child
+in partnership's children. Line 10:Defines recursive function as collect function with an input of
+current\_person while satisfying a loop for each partnership in
+current\_person's partnership\_backrefs and fulfills a loop for each
+child in partnership's children, checks if the child is not in visited. Line 11:Defines recursive function as collect function with an input of
+current\_person while satisfying a loop for each partnership in
+current\_person's partnership\_backrefs and fulfills a loop for each
+child in partnership's children and if the child is not in visited, adds
+child to descendants\_list. Line 12:Defines recursive function as collect function with an input of
+current\_person while satisfying a loop for each partnership in
+current\_person's partnership\_backrefs and fulfills a loop for each
+child in partnership's children and if the child is not in visited,
+calls collect function with the input of child. Line 13: Calls collect function with the input of person. Line 14: Returns descendats\_list. \newpage % RESULTS
+\section{6. RESULTS}\label{results} The system was tested with a test: The test case is called as ``kinship
+relation tests'' which has 7 tests within it:
+``test\_unrelated\_xx16\_xy24'', which is a test for two people if they
+are related or not. ``test\_unrelated\_xx19\_xx18'', which is a test for
+two people if they are related or not.
+``test\_first\_cousins\_xy22\_xx18'', which is a test for two people if
+they are first cousins or not.
+``test\_first\_cousins\_once\_removed\_xy24\_xx18'', which is a test for
+two people if they are first cousins who are removed or not.
+``test\_greatuncle\_greatnephew\_xy24\_xy15'', which is a test for two
+people if they are greatnephew/greatuncle or not.
+``test\_uncle\_niece\_xx46\_xy15'' which is a test for two people if
+they are uncle/niece or not. and ``test\_no\_such\_person\_error'' which
+is a test for a person if person is real or not. In Figure 14, after
+completing the ``kinship tests'', it can be observed that all tests are
+completed without any errors which means that the first test's result is
+that two people are unrelated. For the second test's result is that two
+people are unrelated. For the third test's results, two people are first
+cousins. For the fourth test's result, two people are first cousins are
+once removed. For the fifth test's result two people are greatuncle or
+greatnephew. For the sixth test's results, two people are uncle or
+niece. For the seventh test's result, the person is a real person. After this step the program runs a simulation and gives the results
+called ``Relationship Analysis Results''. In these result it can be
+observed that person T19\_F1\_XX16 and T19\_F1\_XY24 are unrelated,
+person T19\_F1\_XX19 and T19\_F1\_XX18 are unrelated, person
+T19\_F1\_XY22 and T19\_F1\_XX18 are first\_cousins, person T19\_F1\_XY24
+and T19\_F1\_XX18 are first\_cousins\_once\_removed, person
+T19\_F1\_XY24 and T19\_F1\_XY15 are greatuncle\_greatnephew, person
+T19\_F1\_XX46 and T19\_F1\_XY15 are uncle\_niece. After these results,
+we observe that the program runs successfully. \includegraphics[width=6.30729in,height=3.44525in]{media/media/image13.png} \paragraph{Figure 14 Test Results}\label{figure-14-test-results} \newpage % DATA FLOW DIAGRAM
+\section{7.DATA FLOW DIAGRAM}\label{data-flow-diagram} \includegraphics[width=6.26772in,height=6.75in]{media/media/image3.png} \paragraph{\texorpdfstring{ Figure 15 Data Flow
+Diagram}{ Figure 15 Data Flow Diagram}}\label{figure-15-data-flow-diagram} Figure 15 represents the digitally drawn Data Flow Diagram of the
+system. \newpage % CONCLUSION
+\section{8. CONCLUSION}\label{conclusion} In conclusion, The objective of this project was to develop a basic
+family tree structure with analysis of knipship relations using Python.
+With using both person and partnership classes a basic structure was
+created to make it possible two way traversal in parent child
+relationship with using back references. Multiple functions were
+implemented to make it possible this structure including functions for
+identifying ancestors and descendants and tracing paths to visited
+people.\\
+\strut \\
+Upon this framework the logic for performing a knipship relationship was
+built using lowest common ancestor search and distance calculations. The
+system was able to detect basic relationships between cousins, uncles
+etc. From both the example script and the unit tests it was confirmed
+that everything is working flawlessly based on the given family
+arrangement. All test are passing which validates that the system is
+also able to calculate different relationships as well as handle with
+errors by throwing exceptions\\
+\strut \\
+Although the project deals with the most general cases as outlined by
+the project tasks there is room for including the system to involve even
+more complex family relationships. Still the completion of the task
+meets the requirements of the project and serves as the initial stage of
+analyzing kinship by means of the symbolic family tree. \newpage % REFERENCES
+\section{9. REFERENCES}\label{references} N/A \end{document}
